@@ -55,13 +55,12 @@ print(img.shape)
 
 #1. Create Cascade Classifier,contains features of face
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-# glasses_cascade = cv2.CascadeClassifier('haarcascade_eye_tree_eyeglasses')
 
 #2. Search for row and column for the face
 gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(	gray_img,
-										scaleFactor = 1.06,
-										minNeighbors = 5)
+					scaleFactor = 1.06,
+					minNeighbors = 5)
 
 cv2.putText(img, f"The Haarcascade Classifier detects \"{len(faces)}\" faces.", (100,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 3) #times of defaultsize, text thickness
 
@@ -88,13 +87,12 @@ for x,y,w,h in faces:
 	blur_all = blur_sample(blur_all,45)
 	blur_all[y:y+h, x:x+w] = face
 
-#resize
+# Drawing Blocks on any Image.
 draw_blocks(img,4)
 
 cv2.imshow("Face Track", resize_sample(img,4))
 cv2.imshow('Simple Blur', resize_sample(blur_samples,4))
 cv2.imshow('Pixelation Blur', resize_sample(blur_pixels,4))
-# cv2.imshow('All Blur', resize_sample(blur_all,4))
 
 
 cv2.waitKey(0)
